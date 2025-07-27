@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaf Disease Detection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e8449;
+        }
+
+        .result {
+            margin-top: 30px;
+        }
+
+        .result img {
+            margin-top: 15px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .prediction-text {
+            font-size: 20px;
+            color: #2d3436;
+        }
+
+        .confidence {
+            font-size: 16px;
+            color: #636e72;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Leaf Disease Detection</h1>
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required><br><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <p class="prediction-text"><strong>Prediction:</strong> {{ prediction }}</p>
+            <p class="confidence"><strong>Confidence:</strong> {{ confidence }}%</p>
+            <img src="{{ img_path }}" alt="Uploaded Leaf Image">
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        &copy; 2025 Leaf Disease Detector | By sneha
+    </footer>
+</body>
+</html>
